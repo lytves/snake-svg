@@ -6,4 +6,4 @@ The scripts are written in Javascript with Library [SVG.js](https://github.com/s
 
 [To play the game](https://lytves.github.io/snake-svg/)
 
-![Snake game](https://github.com/lytves/snake-svg/raw/master/Assets/Textures/snake.png "Snake game")
+![Snake game](https://raw.githubusercontent.com/lytves/snake-svg/master/snake.png "Snake game")

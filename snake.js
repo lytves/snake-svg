@@ -86,6 +86,9 @@ var food = draw.defs().circle(sizeFood)
 */
 var set = draw.set();
 var pxMove = 10;
+var speedAnimation = 150;
+
+//la dirección al inicio del juego
 var xAxis = false;
 var yAxis = true;
 var xDif = 0;
@@ -140,6 +143,9 @@ function createTail() {
     //luego ésta parte se mueva a su posición
     cola.attr({ 'cxPadre': set.last().cx(), 'cyPadre': set.last().cy() });
     set.add(cola);
+
+    //subimos la velocidad del juego
+		if (speedAnimation > 100) speedAnimation--;
 }
 
 //la función de conducíon de la serpiente
@@ -187,6 +193,7 @@ function reset() {
     yAxis = true;
     xDif = 0;
     yDif = -pxMove;
+    speedAnimation = 150;
 
     textScore.text('Score: ' + numberScore);
     headSnake.center(xSnakePosition, ySnakePosition);
@@ -210,15 +217,6 @@ function reset() {
 //la funcion que actualiza los objetos - dibuja
 //y hace comprobación de colisiones
 function update() {
-    //mover la serpiente
-    headSnake.dmove(xDif, yDif);
-    set.each(function(i) {
-        if (i != 0) {
-            this.center(this.attr('cxPadre'), this.attr('cyPadre'));
-            this.attr({ 'cxPadre': set.get(i - 1).cx(), 'cyPadre': set.get(i - 1).cy() });
-        }
-    })
-
     //obtener la posición actual de la cabeza de la serpiente
     var cx = headSnake.cx(),
         cy = headSnake.cy();
@@ -250,11 +248,20 @@ function update() {
                 }
 
             }
-        })
+        });
+
+        //mover la serpiente
+    headSnake.dmove(xDif, yDif);
+    set.each(function(i) {
+        if (i != 0) {
+            this.center(this.attr('cxPadre'), this.attr('cyPadre'));
+            this.attr({ 'cxPadre': set.get(i - 1).cx(), 'cyPadre': set.get(i - 1).cy() });
+        }
+    })
 }
 
 /*
 //AQUÍ LANZAMOS EL JUEGO
 */
 createRandomFood();
-setInterval("update()", 150);
+setInterval("update()", speedAnimation);

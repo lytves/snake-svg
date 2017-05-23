@@ -1,0 +1,24 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html,
+body {
+    height: 100%;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    color: #0A9F27;
+    margin: 20px 0;
+    font: italic bold 22px/30px Georgia, serif;
+}
+
+#snakegame {
+    width: 800px;
+    height: 500px;
+    margin: auto;
+    border: 1px solid #9B8D8D;
+}
